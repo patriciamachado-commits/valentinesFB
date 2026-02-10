@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQA Education - Valentine's Day Reading Activity</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .logo {
+            height: 70px;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            color: #c2185b;
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1em;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card h2 {
+            color: #c2185b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #c2185b;
+        }
+        
+        .form-group small {
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .level-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .level-btn {
+            padding: 20px 15px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .level-btn:hover {
+            border-color: #c2185b;
+            transform: translateY(-2px);
+        }
+        
+        .level-btn.selected {
+            border-color: #c2185b;
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            color: white;
+        }
+        
+        .level-btn .level-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .level-btn .level-desc {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(194, 24, 91, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-apply {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+        
+        .btn-apply:hover {
+            box-shadow: 0 5px 20px rgba(46, 125, 50, 0.4);
+        }
+        
+        .reading-section {
+            background: #fce4ec;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+        
+        .reading-section h3 {
+            color: #c2185b;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .audio-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .audio-btn {
+            padding: 12px 24px;
+            border: 2px solid #c2185b;
+            border-radius: 10px;
+            background: white;
+            color: #c2185b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .audio-btn:hover {
+            background: #c2185b;
+            color: white;
+        }
+        
+        .audio-btn.playing {
+            background: #c2185b;
+            color: white;
+        }
+        
+        .audio-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .question {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #c2185b;
+            background: #fce4ec;
+        }
+        
+        .option.selected {
+            border-color: #c2185b;
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            color: white;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .option.selected .option-letter {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .results-card {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(194, 24, 91, 0.3);
+        }
+        
+        .score-number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .score-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .results-message {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .results-detail {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .submit-status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .cta-box h3 {
+            color: #e65100;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .cta-box p {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        
+        .hidden { display: none !important; }
+        
+        /* Mobile touch improvements */
+        @media (max-width: 600px) {
+            .level-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .audio-controls {
+                flex-direction: column;
+            }
+            
+            .audio-btn {
+                justify-content: center;
+                min-height: 48px; /* Better touch target */
+            }
+            
+            .option {
+                min-height: 54px; /* Better touch target for answers */
+            }
+            
+            .btn {
+                min-height: 54px;
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+            
+            .form-group input,
+            .form-group select {
+                font-size: 16px; /* Prevent zoom on iOS */
+                min-height: 48px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .reading-section {
+                padding: 20px;
+                font-size: 1em;
+                line-height: 1.7;
+            }
+        }
+        
+        /* iOS safe area support */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Smooth scrolling for all browsers */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent text selection on buttons (mobile) */
+        .btn, .audio-btn, .level-btn, .option {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Active states for mobile feedback */
+        .btn:active, .audio-btn:active, .level-btn:active, .option:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://sqaeducation.org/wp-content/uploads/2022/01/Logo-SQA-education-Purple.png" alt="SQA Education" class="logo" onerror="this.style.display='none'">
+            <h1>Valentine's Day Reading Activity</h1>
+            <p>Learn about this special day of love and friendship</p>
+        </div>
+        
+        <div id="app"></div>
+    </div>
+
+    <script>
+        // ============ CONFIGURATION ============
+        // Google Form Configuration - Valentine's Day Facebook Lead Capture
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeWMta1CEZxliv7qOnnwzmavPph3X5-E9uFvueC3yTcdYwCug/formResponse";
+        const FORM_FIELDS = {
+            name: "entry.2147121040",
+            email: "entry.1851383245",
+            phone: "entry.1752468197",
+            level: "entry.1801334536",
+            score: "entry.1742316467",
+            percentage: "entry.725199248"
+        };
+
+        const CURRENT_ACTIVITY = "Valentine's Day - Facebook";
+
+        // ============ CONTENT BY LEVEL ============
+        const CONTENT = {
+            A1: {
+                title: "Valentine's Day",
+                text: `Valentine's Day is on February 14th every year. It is a special day to show love to family and friends.
+
+On this day, people give cards to the people they love. These cards are called valentines. Many cards are red and pink. They often have hearts on them.
+
+People also give chocolates and flowers. Red roses are very popular. Children in school make valentines for their classmates and teachers.
+
+Some people go to a nice restaurant for dinner. Others cook a special meal at home. Couples often give each other gifts.
+
+In the United States, Valentine's Day is not a holiday. People still go to work and school. But it is a happy day to tell people "I love you."
+
+Valentine's Day is about love and kindness. You can show love to anyone - your family, friends, or pets!`,
+                questions: [
+                    {
+                        question: "When is Valentine's Day?",
+                        options: ["February 12th", "February 14th", "February 16th"],
+                        correct: 1
+                    },
+                    {
+                        question: "What are valentine cards?",
+                        options: ["Cards you give to people you love", "Cards for birthdays", "Cards for Christmas"],
+                        correct: 0
+                    },
+                    {
+                        question: "What flowers are popular on Valentine's Day?",
+                        options: ["Yellow tulips", "White daisies", "Red roses"],
+                        correct: 2
+                    },
+                    {
+                        question: "Is Valentine's Day a holiday in the United States?",
+                        options: ["Yes, people don't work", "No, people still go to work and school", "Only children have the day off"],
+                        correct: 1
+                    },
+                    {
+                        question: "Who can you show love to on Valentine's Day?",
+                        options: ["Only your boyfriend or girlfriend", "Only your family", "Family, friends, or pets"],
+                        correct: 2
+                    }
+                ]
+            },
+            A2B1: {
+                title: "The History and Traditions of Valentine's Day",
+                text: `Valentine's Day, celebrated on February 14th, is one of the most popular holidays for expressing love and affection. But where did this tradition come from?
+
+The holiday is named after Saint Valentine, a Christian priest who lived in Rome during the 3rd century. According to legend, the Roman Emperor Claudius II believed that single men made better soldiers, so he banned marriage for young men. Valentine disagreed with this law and continued to perform marriages in secret. When the emperor discovered this, Valentine was put in prison and later executed on February 14th.
+
+Before his death, Valentine supposedly sent a letter to a young woman he had befriended, signing it "From your Valentine." This phrase is still used today on millions of cards around the world.
+
+Valentine's Day traditions vary by country. In the United States, people exchange cards, chocolates, and flowers. Americans spend billions of dollars each year on Valentine's Day gifts. In Japan, women give chocolates to men on February 14th, and men return the favor on March 14th, called "White Day." In some Latin American countries, the day is known as "Day of Love and Friendship," and people celebrate all types of love, not just romantic love.
+
+Today, Valentine's Day has become very commercial, with stores selling everything from teddy bears to jewelry. However, many people still appreciate the simple gesture of writing a heartfelt message to someone they care about.`,
+                questions: [
+                    {
+                        question: "Who was Saint Valentine?",
+                        options: ["A Roman emperor", "A Christian priest who performed secret marriages", "A famous poet"],
+                        correct: 1
+                    },
+                    {
+                        question: "Why did Emperor Claudius II ban marriage for young men?",
+                        options: ["He didn't like weddings", "He believed single men made better soldiers", "There wasn't enough food for families"],
+                        correct: 1
+                    },
+                    {
+                        question: "What happens in Japan on White Day (March 14th)?",
+                        options: ["Women give chocolates to men", "Men give gifts to women", "Everyone wears white clothes"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is Valentine's Day called in some Latin American countries?",
+                        options: ["Day of Hearts", "Day of Love and Friendship", "Day of Roses"],
+                        correct: 1
+                    },
+                    {
+                        question: "According to the text, what do many people still appreciate about Valentine's Day?",
+                        options: ["Buying expensive jewelry", "Writing heartfelt messages", "Going to fancy restaurants"],
+                        correct: 1
+                    }
+                ]
+            },
+            B2C1: {
+                title: "Valentine's Day: Romance, Commerce, and Cultural Perspectives",
+                text: `Valentine's Day occupies a fascinating intersection of ancient ritual, religious history, and modern consumer culture. While millions worldwide exchange tokens of affection each February 14th, the holiday's evolution reveals complex tensions between authentic emotional expression and commercial exploitation.
+
+The historical origins of Valentine's Day remain somewhat obscure, with multiple Saint Valentines recognized by the Catholic Church. The most commonly cited legend involves a 3rd-century Roman priest who defied Emperor Claudius II's prohibition on marriage for young soldiers. However, historians note that this narrative may have been embellished over centuries, and the association of mid-February with romance likely predates Christianity, possibly connecting to the ancient Roman festival of Lupercalia, a fertility celebration.
+
+The transformation of Valentine's Day into a commercial phenomenon accelerated dramatically in the 19th century with the mass production of greeting cards. Esther Howland, often called the "Mother of the American Valentine," began producing elaborate cards in the 1840s, establishing a tradition that has grown into a multi-billion dollar industry. Today, approximately 145 million Valentine's cards are exchanged annually in the United States alone, second only to Christmas.
+
+Critics argue that the commercialization of Valentine's Day has fundamentally distorted its meaning, creating unrealistic expectations and unnecessary pressure on relationships. The emphasis on expensive gifts and grand gestures, they contend, reduces love to a transaction and marginalizes those without romantic partners. Some psychologists have noted increased rates of depression and anxiety around the holiday, particularly among single individuals who feel excluded from the celebration.
+
+Defenders of the holiday counter that Valentine's Day provides a valuable reminder to express appreciation for loved ones in our increasingly busy lives. They argue that the specific form of celebration matters less than the intention behind it, and that meaningful gestures need not be expensive. Furthermore, the expanding interpretation of the holiday to include friends and family members has made it more inclusive.
+
+Cultural variations in Valentine's Day observance offer interesting perspectives on these debates. In countries like Finland and Estonia, February 14th is celebrated as "Friend's Day," emphasizing platonic relationships rather than romantic ones. Meanwhile, some cultures have rejected the holiday entirely as an unwelcome Western import that conflicts with local values and traditions.
+
+As Valentine's Day continues to evolve, it serves as a lens through which we can examine broader questions about how societies ritualize emotion, the relationship between sentiment and commerce, and the universal human need to express and receive love.`,
+                questions: [
+                    {
+                        question: "According to the passage, what ancient Roman festival may have influenced Valentine's Day?",
+                        options: ["Saturnalia", "Lupercalia", "Floralia"],
+                        correct: 1
+                    },
+                    {
+                        question: "Who is credited with beginning the mass production of Valentine's cards in America?",
+                        options: ["Saint Valentine", "Emperor Claudius II", "Esther Howland"],
+                        correct: 2
+                    },
+                    {
+                        question: "What concern do critics raise about the commercialization of Valentine's Day?",
+                        options: ["Cards are too expensive to mail", "It reduces love to a transaction and creates unrealistic expectations", "There aren't enough romantic restaurants"],
+                        correct: 1
+                    },
+                    {
+                        question: "How do Finland and Estonia celebrate February 14th differently?",
+                        options: ["They don't celebrate at all", "They celebrate it as Friend's Day, focusing on platonic relationships", "They celebrate it a week later"],
+                        correct: 1
+                    },
+                    {
+                        question: "What broader questions does the author suggest Valentine's Day helps us examine?",
+                        options: ["How to choose the best chocolates", "How societies ritualize emotion and the relationship between sentiment and commerce", "Which flowers last the longest"],
+                        correct: 1
+                    }
+                ]
+            }
+        };
+
+        // ============ APPLICATION STATE ============
+        let state = {
+            screen: 'start',
+            name: '',
+            email: '',
+            phone: '',
+            level: null,
+            currentQuestion: 0,
+            answers: [],
+            showResults: false,
+            submitted: false
+        };
+
+        // ============ SPEECH SYNTHESIS (Mobile Optimized) ============
+        let speechUtterance = null;
+        let isSpeaking = false;
+        let isPaused = false;
+        let voicesLoaded = false;
+        let speechChunks = [];
+        let currentChunkIndex = 0;
+
+        // Detect mobile device
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const isAndroid = /Android/i.test(navigator.userAgent);
+
+        // Load voices - critical for mobile
+        function loadVoices() {
+            return new Promise((resolve) => {
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    voicesLoaded = true;
+                    resolve(voices);
+                } else {
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        voicesLoaded = true;
+                        resolve(window.speechSynthesis.getVoices());
+                    };
+                    // Fallback timeout for some Android devices
+                    setTimeout(() => {
+                        voicesLoaded = true;
+                        resolve(window.speechSynthesis.getVoices());
+                    }, 1000);
+                }
+            });
+        }
+
+        function getVoice() {
+            const voices = window.speechSynthesis.getVoices();
+            
+            // Preferred voices by platform
+            const preferredVoices = isIOS ? [
+                'Samantha',           // iOS default female
+                'Karen',              // iOS Australian
+                'Daniel',             // iOS British male
+                'Moira',              // iOS Irish
+                'Rishi',              // iOS Indian
+                'Tessa',              // iOS South African
+            ] : isAndroid ? [
+                'Google US English',  // Android Google voice
+                'English United States',
+                'en-US-language',
+                'en_US',
+            ] : [
+                'Google US English',
+                'Google UK English Female',
+                'Microsoft Zira',
+                'Microsoft David',
+                'Samantha',
+                'Karen',
+                'Daniel',
+            ];
+            
+            // Try preferred voices first
+            for (let pref of preferredVoices) {
+                const voice = voices.find(v => 
+                    v.name.includes(pref) || 
+                    v.lang.includes(pref) ||
+                    v.voiceURI.includes(pref)
+                );
+                if (voice) return voice;
+            }
+            
+            // Fallback to any English voice
+            const englishVoice = voices.find(v => 
+                v.lang.startsWith('en') || 
+                v.lang.includes('en-') ||
+                v.lang.includes('en_')
+            );
+            
+            return englishVoice || voices[0] || null;
+        }
+
+        // Split text into chunks for better mobile performance
+        function splitTextIntoChunks(text, maxLength = 200) {
+            const sentences = text.replace(/([.!?])\s+/g, '$1|').split('|');
+            const chunks = [];
+            let currentChunk = '';
+            
+            for (const sentence of sentences) {
+                if ((currentChunk + ' ' + sentence).length > maxLength && currentChunk) {
+                    chunks.push(currentChunk.trim());
+                    currentChunk = sentence;
+                } else {
+                    currentChunk += (currentChunk ? ' ' : '') + sentence;
+                }
+            }
+            if (currentChunk.trim()) {
+                chunks.push(currentChunk.trim());
+            }
+            return chunks;
+        }
+
+        function speak(text) {
+            stopSpeech();
+            
+            if (!('speechSynthesis' in window)) {
+                alert('Sorry, your browser does not support text-to-speech. Please read the text on screen.');
+                return;
+            }
+
+            // iOS Safari requires user interaction - this function is called from button click, so we're good
+            // Cancel any existing speech first
+            window.speechSynthesis.cancel();
+            
+            // For mobile, split into smaller chunks to prevent cutoff
+            if (isMobile) {
+                speechChunks = splitTextIntoChunks(text, 150);
+                currentChunkIndex = 0;
+                speakNextChunk();
+            } else {
+                speechChunks = [text];
+                currentChunkIndex = 0;
+                speakNextChunk();
+            }
+        }
+
+        function speakNextChunk() {
+            if (currentChunkIndex >= speechChunks.length) {
+                isSpeaking = false;
+                isPaused = false;
+                updateAudioButtons();
+                return;
+            }
+
+            const chunk = speechChunks[currentChunkIndex];
+            speechUtterance = new SpeechSynthesisUtterance(chunk);
+            
+            const voice = getVoice();
+            if (voice) {
+                speechUtterance.voice = voice;
+            }
+            
+            speechUtterance.rate = isIOS ? 0.9 : 0.85; // Slightly slower for clarity
+            speechUtterance.pitch = 1;
+            speechUtterance.volume = 1;
+            
+            speechUtterance.onstart = () => {
+                isSpeaking = true;
+                isPaused = false;
+                updateAudioButtons();
+            };
+            
+            speechUtterance.onend = () => {
+                currentChunkIndex++;
+                if (currentChunkIndex < speechChunks.length && isSpeaking) {
+                    // Small delay between chunks for natural speech
+                    setTimeout(speakNextChunk, 100);
+                } else {
+                    isSpeaking = false;
+                    isPaused = false;
+                    updateAudioButtons();
+                }
+            };
+            
+            speechUtterance.onerror = (event) => {
+                console.log('Speech error:', event.error);
+                // Try to continue with next chunk on error
+                if (event.error !== 'canceled') {
+                    currentChunkIndex++;
+                    if (currentChunkIndex < speechChunks.length) {
+                        setTimeout(speakNextChunk, 100);
+                    } else {
+                        isSpeaking = false;
+                        isPaused = false;
+                        updateAudioButtons();
+                    }
+                }
+            };
+
+            // iOS fix: need to call speak synchronously after user interaction
+            window.speechSynthesis.speak(speechUtterance);
+            
+            // Android fix: Chrome sometimes pauses speech, this keeps it going
+            if (isAndroid) {
+                const resumeInterval = setInterval(() => {
+                    if (!isSpeaking || isPaused) {
+                        clearInterval(resumeInterval);
+                        return;
+                    }
+                    if (window.speechSynthesis.paused) {
+                        window.speechSynthesis.resume();
+                    }
+                }, 3000);
+            }
+        }
+
+        function pauseSpeech() {
+            if (isSpeaking && !isPaused) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateAudioButtons();
+            }
+        }
+
+        function resumeSpeech() {
+            if (isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateAudioButtons();
+                
+                // Android fix: keep resuming if it pauses again
+                if (isAndroid) {
+                    setTimeout(() => {
+                        if (isSpeaking && !isPaused && window.speechSynthesis.paused) {
+                            window.speechSynthesis.resume();
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+        function stopSpeech() {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            isPaused = false;
+            speechUtterance = null;
+            speechChunks = [];
+            currentChunkIndex = 0;
+            updateAudioButtons();
+        }
+
+        function updateAudioButtons() {
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const resumeBtn = document.getElementById('resumeBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            
+            if (!playBtn) return;
+            
+            playBtn.classList.toggle('playing', isSpeaking && !isPaused);
+            playBtn.disabled = isSpeaking;
+            
+            if (pauseBtn) {
+                pauseBtn.style.display = (isSpeaking && !isPaused) ? 'flex' : 'none';
+            }
+            if (resumeBtn) {
+                resumeBtn.style.display = isPaused ? 'flex' : 'none';
+            }
+            if (stopBtn) {
+                stopBtn.disabled = !isSpeaking && !isPaused;
+            }
+        }
+
+        // ============ RENDERING ============
+        function render() {
+            const app = document.getElementById('app');
+            
+            switch(state.screen) {
+                case 'start':
+                    app.innerHTML = renderStartScreen();
+                    break;
+                case 'reading':
+                    app.innerHTML = renderReadingScreen();
+                    setTimeout(updateAudioButtons, 100);
+                    break;
+                case 'results':
+                    app.innerHTML = renderResultsScreen();
+                    break;
+            }
+        }
+
+        function renderStartScreen() {
+            return `
+                <div class="card">
+                    <h2>Welcome! Let's get started</h2>
+                    <p style="color: #666; margin-bottom: 20px;">Try this FREE English reading activity and see how SQA Education helps you learn English while understanding American culture!</p>
+                    
+                    <div class="form-group">
+                        <label for="nameInput">Your Name *</label>
+                        <input type="text" id="nameInput" placeholder="Enter your full name" value="${state.name}" oninput="updateField('name', this.value)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="emailInput">Email Address *</label>
+                        <input type="email" id="emailInput" placeholder="Enter your email" value="${state.email}" oninput="updateField('email', this.value)">
+                        <small>We'll send you more free learning resources!</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneInput">Phone Number (WhatsApp) *</label>
+                        <input type="tel" id="phoneInput" placeholder="Enter your phone number" value="${state.phone}" oninput="updateField('phone', this.value)">
+                        <small>For class updates and reminders</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Your English Level</label>
+                        <div class="level-buttons">
+                            <div class="level-btn ${state.level === 'A1' ? 'selected' : ''}" onclick="selectLevel('A1')">
+                                <span class="level-name">A1</span>
+                                <span class="level-desc">Beginner</span>
+                            </div>
+                            <div class="level-btn ${state.level === 'A2B1' ? 'selected' : ''}" onclick="selectLevel('A2B1')">
+                                <span class="level-name">A2/B1</span>
+                                <span class="level-desc">Intermediate</span>
+                            </div>
+                            <div class="level-btn ${state.level === 'B2C1' ? 'selected' : ''}" onclick="selectLevel('B2C1')">
+                                <span class="level-name">B2/C1</span>
+                                <span class="level-desc">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="startReading()" ${!canStart() ? 'disabled' : ''}>
+                        Start Reading
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderReadingScreen() {
+            const content = CONTENT[state.level];
+            const questions = content.questions;
+            const currentQ = questions[state.currentQuestion];
+            const isLastQuestion = state.currentQuestion === questions.length - 1;
+            const hasAnswered = state.answers[state.currentQuestion] !== undefined;
+            
+            return `
+                <div class="card">
+                    <h2>${content.title}</h2>
+                    
+                    <div class="audio-controls">
+                        <button class="audio-btn" id="playBtn" onclick="speak(document.getElementById('readingText').innerText)">
+                            <span>&#9658;</span> Listen
+                        </button>
+                        <button class="audio-btn" id="pauseBtn" onclick="pauseSpeech()" style="display:none;">
+                            <span>&#10074;&#10074;</span> Pause
+                        </button>
+                        <button class="audio-btn" id="resumeBtn" onclick="resumeSpeech()" style="display:none;">
+                            <span>&#9658;</span> Resume
+                        </button>
+                        <button class="audio-btn" id="stopBtn" onclick="stopSpeech()" disabled>
+                            <span>&#9632;</span> Stop
+                        </button>
+                    </div>
+                    
+                    <div class="reading-section">
+                        <div id="readingText">${content.text.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Question ${state.currentQuestion + 1} of ${questions.length}</h2>
+                    
+                    <div class="question">
+                        <div class="question-number">${state.currentQuestion + 1}</div>
+                        <div class="question-text">${currentQ.question}</div>
+                        <div class="options">
+                            ${currentQ.options.map((opt, i) => `
+                                <div class="option ${state.answers[state.currentQuestion] === i ? 'selected' : ''}" 
+                                     onclick="selectAnswer(${i})">
+                                    <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+                                    <span>${opt}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        ${state.currentQuestion > 0 ? `
+                            <button class="btn" style="background: #6c757d; flex: 1;" onclick="prevQuestion()">
+                                Previous
+                            </button>
+                        ` : ''}
+                        <button class="btn" style="flex: 2;" onclick="${isLastQuestion ? 'showResults()' : 'nextQuestion()'}" ${!hasAnswered ? 'disabled' : ''}>
+                            ${isLastQuestion ? 'See Results' : 'Next Question'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderResultsScreen() {
+            const content = CONTENT[state.level];
+            const questions = content.questions;
+            let correct = 0;
+            
+            state.answers.forEach((answer, i) => {
+                if (answer === questions[i].correct) correct++;
+            });
+            
+            const percentage = Math.round((correct / questions.length) * 100);
+            const levelLabel = state.level === 'A1' ? 'A1' : state.level === 'A2B1' ? 'A2/B1' : 'B2/C1';
+            
+            let message = '';
+            if (percentage >= 80) message = 'Excellent work!';
+            else if (percentage >= 60) message = 'Good job!';
+            else message = 'Keep practicing!';
+            
+            return `
+                <div class="card results-card">
+                    <div class="score-circle">
+                        <span class="score-number">${percentage}%</span>
+                        <span class="score-label">${correct}/${questions.length} correct</span>
+                    </div>
+                    
+                    <div class="results-message">${message}</div>
+                    <div class="results-detail">
+                        Level: ${levelLabel}<br>
+                        Name: ${state.name}
+                    </div>
+                    
+                    <div class="submit-status">
+                        Your results have been submitted automatically. Thank you!
+                    </div>
+                    
+                    <div class="cta-box">
+                        <h3>Want more content like this?</h3>
+                        <p>At SQA Education, we teach English AND American culture. Learn the language you need for real life in America!</p>
+                        <p><strong>Next term starts March 23rd!</strong></p>
+                        <a href="https://sqaeducation.org/english-test-start-premium/" target="_blank" class="btn btn-apply">
+                            Apply Now - Classes Filling Fast!
+                        </a>
+                    </div>
+                    
+                    <button class="btn" style="background: #6c757d; margin-top: 20px;" onclick="startOver()">
+                        Try Again
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h2>Review Your Answers</h2>
+                    ${questions.map((q, i) => {
+                        const isCorrect = state.answers[i] === q.correct;
+                        return `
+                            <div class="question">
+                                <div class="question-number">${i + 1}</div>
+                                <div class="question-text">${q.question}</div>
+                                <div class="options">
+                                    ${q.options.map((opt, j) => {
+                                        let cls = '';
+                                        if (j === q.correct) cls = 'correct';
+                                        else if (state.answers[i] === j) cls = 'incorrect';
+                                        return `
+                                            <div class="option ${cls}">
+                                                <span class="option-letter">${String.fromCharCode(65 + j)}</span>
+                                                <span>${opt}</span>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h2 style="justify-content: center;">Ready to improve your English?</h2>
+                    <p style="color: #666; margin-bottom: 20px;">Join thousands of students who are learning English and American culture with SQA Education. Our online classes fit your schedule!</p>
+                    <a href="https://sqaeducation.org/english-test-start-premium/" target="_blank" class="btn btn-apply" style="display: inline-block; width: auto; padding: 16px 50px;">
+                        Apply for Classes - Starting March 23rd!
+                    </a>
+                </div>
+            `;
+        }
+
+        // ============ EVENT HANDLERS ============
+        function updateField(field, value) {
+            state[field] = value;
+        }
+
+        function selectLevel(level) {
+            state.level = level;
+            render();
+        }
+
+        function canStart() {
+            return state.name.trim() !== '' && 
+                   state.email.trim() !== '' && 
+                   state.phone.trim() !== '' && 
+                   state.level !== null;
+        }
+
+        function startReading() {
+            if (!canStart()) return;
+            state.screen = 'reading';
+            state.currentQuestion = 0;
+            state.answers = [];
+            render();
+        }
+
+        function selectAnswer(index) {
+            state.answers[state.currentQuestion] = index;
+            render();
+        }
+
+        function nextQuestion() {
+            stopSpeech();
+            state.currentQuestion++;
+            render();
+            window.scrollTo(0, 0);
+        }
+
+        function prevQuestion() {
+            stopSpeech();
+            state.currentQuestion--;
+            render();
+            window.scrollTo(0, 0);
+        }
+
+        function showResults() {
+            stopSpeech();
+            state.screen = 'results';
+            
+            // Auto-submit to Google Form
+            submitResults();
+            
+            render();
+            window.scrollTo(0, 0);
+        }
+
+        function submitResults() {
+            if (state.submitted) return; // Prevent double submission
+            
+            const content = CONTENT[state.level];
+            const questions = content.questions;
+            let correct = 0;
+            
+            state.answers.forEach((answer, i) => {
+                if (answer === questions[i].correct) correct++;
+            });
+            
+            const levelLabel = state.level === 'A1' ? 'A1' : state.level === 'A2B1' ? 'A2/B1' : 'B2/C1';
+            const percentage = Math.round((correct / questions.length) * 100);
+            
+            // Submit to Google Form
+            const formData = new FormData();
+            formData.append(FORM_FIELDS.name, state.name);
+            formData.append(FORM_FIELDS.email, state.email);
+            formData.append(FORM_FIELDS.phone, state.phone);
+            formData.append(FORM_FIELDS.level, levelLabel);
+            formData.append(FORM_FIELDS.score, correct + '/' + questions.length);
+            formData.append(FORM_FIELDS.percentage, percentage + '%');
+            
+            fetch(GOOGLE_FORM_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                state.submitted = true;
+                render();
+            }).catch(err => {
+                console.error('Submit error:', err);
+                state.submitted = true;
+                render();
+            });
+        }
+
+        function startOver() {
+            state.screen = 'start';
+            state.currentQuestion = 0;
+            state.answers = [];
+            state.submitted = false;
+            stopSpeech();
+            render();
+        }
+
+        // ============ INITIALIZATION (Mobile Optimized) ============
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preload voices for mobile devices
+            if ('speechSynthesis' in window) {
+                loadVoices().then(() => {
+                    console.log('Voices loaded:', window.speechSynthesis.getVoices().length);
+                });
+                
+                // iOS Safari fix: voices may load late
+                setTimeout(() => {
+                    if (!voicesLoaded) {
+                        window.speechSynthesis.getVoices();
+                    }
+                }, 500);
+            }
+            
+            // Prevent zoom on input focus (iOS)
+            document.querySelectorAll('input, select').forEach(el => {
+                el.addEventListener('focus', () => {
+                    if (isIOS) {
+                        document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                    }
+                });
+                el.addEventListener('blur', () => {
+                    if (isIOS) {
+                        document.querySelector('meta[name="viewport"]').setAttribute('content', 
+                            'width=device-width, initial-scale=1.0');
+                    }
+                });
+            });
+            
+            render();
+        });
+
+        // Handle page visibility change (stop speech when user switches tabs/apps)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isSpeaking) {
+                stopSpeech();
+            }
+        });
+
+        render();
+    </script>
+</body>
+</html>
